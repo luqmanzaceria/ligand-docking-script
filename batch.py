@@ -1,11 +1,14 @@
 import os
 import subprocess
+from ranking import *
 
 vina_path = input("Path to Vina: ")
 
 conf_path = input("Path to configuration file: ")
 
 batch_path = input("Path to ligand directory: ")
+
+out_path = input("Desired output directory: ")
 
 
 for ligand in os.listdir(batch_path):
@@ -14,7 +17,13 @@ for ligand in os.listdir(batch_path):
     if os.path.isfile(f):
         print("Docking " + ligand + "...")
         ligand_path  = batch_path + "/" + ligand
-        log_name = (ligand.split('\\')[-1].split('.')[0]+ "_log.log")
+        log_name = (out_path+'/'+ligand.split('\\')[-1].split('.')[0]+ "_log.log")
+        out_name = (out_path+'/'+ligand.split('\\')[-1].split('.')[0]+ "_out.pdbqt")
         
-        args = [vina_path, '--config', conf_path, '--ligand' , ligand_path, '--log', log_name]
+        args = [vina_path, '--config', conf_path, '--ligand' , ligand_path, '--log', log_name, '--out', out_name]
         subprocess.run(args)
+
+    rank_affinities(ligand, log_name)
+    
+    
+

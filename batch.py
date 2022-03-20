@@ -2,13 +2,13 @@ import os
 import subprocess
 from ranking import *
 
-vina_path = '/Users/luqmanzaceria/dev/docking/ligand-docking-script/vina/vinax' #input("Path to Vina: ")
+vina_path = input("Path to Vina: ")
 
-conf_path = '/Users/luqmanzaceria/dev/docking/ligand-docking-script/vina/conf_vs.txt' #input("Path to configuration file: ")
+conf_path = input("Path to configuration file: ")
 
-batch_path = '/Users/luqmanzaceria/dev/docking/ligand-docking-script/vina/ligands' #input("Path to ligand directory: ")
+batch_path = input("Path to ligand directory: ")
 
-out_path = '/Users/luqmanzaceria/dev/docking/docking_logs' #input("Desired output directory: ")
+out_path = input("Desired output directory: ")
 
 
 for ligand in os.listdir(batch_path):

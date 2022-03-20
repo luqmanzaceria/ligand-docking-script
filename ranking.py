@@ -1,6 +1,7 @@
 import operator
 
 affinity_rankings = {}
+sorted_affinity = {}
 
 def rank_affinities(ligand, log_file):
 
@@ -31,7 +32,9 @@ def rank_affinities(ligand, log_file):
         split_affinity.remove('')
 
     top_affinity = split_affinity[1]
-    affinity_rankings[ligand]=(top_affinity)
-    print(affinity_rankings)
-    sorted_affinity = dict(sorted(affinity_rankings.items(), key=operator.itemgetter(1),reverse=True))
+    affinity_rankings[ligand]=float(top_affinity)
+    
+    sorted_affinity = dict(sorted(affinity_rankings.items(), key=operator.itemgetter(1),reverse=False))
     print(sorted_affinity)
+    return sorted_affinity
+
